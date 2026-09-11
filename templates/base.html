@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GH MART - Ghana's Premier Online Store</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Page-specific CSS -->
+    {% block extra_css %}{% endblock %}
+    
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="{% url 'homepage' %}" class="nav-logo">GH MART</a>
+        <div class="nav-menu">
+            <a href="{% url 'homepage' %}" class="nav-link" title="Home">
+                <i class="fas fa-home"></i>
+                <span class="nav-text">Home</span>
+            </a>
+            <a href="{% url 'product_list' %}" class="nav-link" title="Products">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="nav-text">Products</span>
+            </a>
+            <a href="{% url 'team' %}" class="nav-link" title="Our Team">
+                <i class="fas fa-users"></i>
+                <span class="nav-text">Our Team</span>
+            </a>
+            <a href="{% url 'contact' %}" class="nav-link" title="Contact">
+                <i class="fas fa-envelope"></i>
+                <span class="nav-text">Contact</span>
+            </a>
+            <a href="{% url 'cart' %}" class="nav-link" title="Cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="nav-text">Cart</span>
+                <span class="cart-count" id="cart-count">0</span>
+            </a>
+            
+            {% if user.is_authenticated %}
+                <div class="nav-user">
+                    <span class="nav-welcome" title="Welcome, {{ user.username }}">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-text">{{ user.username }}</span>
+                    </span>
+                    <a href="{% url 'profile' %}" class="nav-link" title="Profile">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="nav-text">Profile</span>
+                    </a>
+                    <a href="{% url 'logout' %}" class="nav-link" title="Logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-text">Logout</span>
+                    </a>
+                </div>
+            {% else %}
+                <div class="nav-auth">
+                    <a href="{% url 'login' %}" class="nav-link" title="Login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span class="nav-text">Login</span>
+                    </a>
+                    <a href="{% url 'register' %}" class="nav-link" title="Register">
+                        <i class="fas fa-user-plus"></i>
+                        <span class="nav-text">Register</span>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+</nav>
+    
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>Contact us: +233 598 699 581</p>
+            <p>&copy; 2025 GH MART. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- JavaScript Files -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/animations.js' %}"></script>
+    <script src="{% static 'js/auth.js' %}"></script>
+    <script src="{% static 'js/contact.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Page-specific JS -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+<link rel="stylesheet" href="{% static 'css/products.css' %}">
+<link rel="stylesheet" href="{% static 'css/owner.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Welcome to GH MART</h1>
+    <p>Ghana's Premier Online Shopping Experience</p>
+    <a href="{% url 'product_list' %}" class="btn btn-primary hero-btn">Shop Now</a>
+</section>
+
+<!-- Auth Call to Action -->
+{% if not user.is_authenticated %}
+<section class="auth-cta">
+    <div class="container">
+        <h2>Join GH MART Today!</h2>
+        <p>Create an account to enjoy faster checkout, order tracking, and exclusive deals.</p>
+        <div class="auth-buttons">
+            <a href="{% url 'register' %}" class="btn btn-primary">Register Now</a>
+            <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Featured Products Section -->
+<section class="featured-products">
+    <h2 class="section-title">Featured Products</h2>
+    <div class="products-grid">
+        {% for product in featured_products %}
+        <div class="product-card" data-product-id="{{ product.id }}">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+            <div class="product-info">
+                <h3 class="product-title">{{ product.name }}</h3>
+                <p class="product-price currency">{{ product.price }}</p>
+                <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+        {% empty %}
+        <p class="no-products">No featured products available at the moment.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/animations.js' %}"></script>
+<script>
+// Add event listeners to all "Add to Cart" buttons
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.closest('.product-card').dataset.productId;
+            addToCart(productId);
+        });
+    });
+});
+</script>
+{% endblock %}
+
+<!-- Video Background Version -->
+<div class="video-background">
+    <video autoplay muted loop playsinline>
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-digital-waves-9885-large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+    <div class="hero-content">
+        <h1>Welcome to GH MART</h1>
+        <p>Ghana's Premier Online Shopping Experience</p>
+        <a href="{% url 'product_list' %}" class="btn btn-primary hero-btn">Shop Now</a>
+    </div>
+</div>
+
+<!-- Particle.js Background -->
+<div id="particles-js" class="particles-background">
+    <div class="hero-content">
+        <h1>Welcome to GH MART</h1>
+        <p>Ghana's Premier Online Shopping Experience</p>
+        <a href="{% url 'product_list' %}" class="btn btn-primary hero-btn">Shop Now</a>
+    </div>
+</div>
+
+<!-- Owner Profile Section -->
+<section class="owner-section">
+    <div class="container">
+        <h2 class="section-title">Meet Our Founder</h2>
+        <p class="section-subtitle">The vision behind GH MART</p>
+        
+        <div class="owner-content">
+            <!-- Owner Profile Card -->
+            <div class="owner-card">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.1&auto=format&fit=crop&w=400&h=400&q=80" 
+                     alt="Owner Name" class="owner-avatar">
+                
+                <h3 class="owner-name">Kwame Mensah</h3>
+                <p class="owner-title">Founder & CEO</p>
+                
+                <div class="owner-contact">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <strong>Email</strong>
+                            <span>kwame@ghmart.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-info">
+                            <strong>Phone</strong>
+                            <span>+233 123 456 789</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-info">
+                            <strong>Location</strong>
+                            <span>Accra, Ghana</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links-owner">
+                    <a href="#" class="social-link-owner facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link-owner twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link-owner instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link-owner linkedin">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Owner Information -->
+            <div class="owner-info">
+                <h3>About Kwame Mensah</h3>
+                
+                <div class="owner-bio">
+                    <p>Kwame Mensah is a visionary entrepreneur with over 10 years of experience in the e-commerce industry. Born and raised in Accra, Ghana, Kwame founded GH MART with a mission to revolutionize online shopping in West Africa.</p>
+                    
+                    <p>With a background in computer science and business administration from the University of Ghana, Kwame combines technical expertise with business acumen to drive innovation in the e-commerce space.</p>
+                    
+                    <p>His passion for technology and commitment to excellence has positioned GH MART as Ghana's premier online shopping destination, serving thousands of satisfied customers across the country.</p>
+                </div>
+                
+                <div class="owner-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Team Members</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Awards Won</div>
+                    </div>
+                </div>
+                
+                <div class="owner-mission">
+                    <h4>My Mission</h4>
+                    <p class="mission-text">
+                        "To create a seamless online shopping experience that empowers Ghanaian businesses and provides customers with access to quality products at affordable prices. I believe in the potential of African e-commerce and am committed to making GH MART a platform that drives economic growth and technological advancement across the continent."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

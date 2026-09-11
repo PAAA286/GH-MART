@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        <h1>Your Profile</h1>
+        <p>Manage your account and view your activity</p>
+    </div>
+    
+    <div class="profile-content">
+        <!-- Sidebar -->
+        <div class="profile-sidebar">
+            <img src="https://ui-avatars.com/api/?name={{ user.username }}&background=0D8ABC&color=fff" 
+                 alt="Profile Avatar" class="profile-avatar">
+            <div class="profile-username">{{ user.username }}</div>
+            <div class="profile-email">{{ user.email|default:"No email provided" }}</div>
+            
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-stat="orders">5</span>
+                    <span class="stat-label">Orders</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-stat="reviews">3</span>
+                    <span class="stat-label">Reviews</span>
+                </div>
+            </div>
+            
+            <div class="profile-actions">
+                <button class="action-btn btn-primary edit-profile-btn">
+                    <i class="fas fa-edit"></i> Edit Profile
+                </button>
+                <button class="action-btn btn-secondary save-profile-btn" style="display: none;">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+                <button class="action-btn btn-secondary cancel-edit-btn" style="display: none;">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <a href="{% url 'logout' %}" class="action-btn btn-danger logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="profile-main">
+            <!-- Personal Information -->
+            <div class="profile-card">
+                <h2>Personal Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Full Name</span>
+                        <span class="info-value">John Doe</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email</span>
+                        <span class="info-value">{{ user.email|default:"Not provided" }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Phone</span>
+                        <span class="info-value">+233 123 456 789</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Member Since</span>
+                        <span class="info-value">{{ user.date_joined|date:"F j, Y" }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Last Login</span>
+                        <span class="info-value">{{ user.last_login|date:"F j, Y, g:i a"|default:"Never" }}</span>
+                    </div>
+                    <div class="info-item non-editable">
+                        <span class="info-label">Account Status</span>
+                        <span class="info-value">Verified</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order History -->
+            <div class="profile-card">
+                <h2>Recent Orders</h2>
+                <div class="order-list">
+                    <div class="order-item" data-order-id="1001">
+                        <img src="https://via.placeholder.com/80" alt="Product" class="order-image">
+                        <div class="order-details">
+                            <h3>Wireless Headphones</h3>
+                            <span class="order-date">August 15, 2023</span>
+                        </div>
+                        <span class="order-price">GH₵120.00</span>
+                        <span class="order-status status-completed">Completed</span>
+                    </div>
+                    
+                    <div class="order-item" data-order-id="1002">
+                        <img src="https://via.placeholder.com/80" alt="Product" class="order-image">
+                        <div class="order-details">
+                            <h3>Smart Watch</h3>
+                            <span class="order-date">August 10, 2023</span>
+                        </div>
+                        <span class="order-price">GH₵250.00</span>
+                        <span class="order-status status-pending">Processing</span>
+                    </div>
+                    
+                    <div class="order-item" data-order-id="1003">
+                        <img src="https://via.placeholder.com/80" alt="Product" class="order-image">
+                        <div class="order-details">
+                            <h3>Phone Case</h3>
+                            <span class="order-date">August 5, 2023</span>
+                        </div>
+                        <span class="order-price">GH₵35.00</span>
+                        <span class="order-status status-completed">Completed</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Address Book -->
+            <div class="profile-card">
+                <h2>Address Book</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Default Shipping Address</span>
+                        <span class="info-value">
+                            123 Main Street<br>
+                            Accra, Greater Accra<br>
+                            Ghana, 00233
+                        </span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Billing Address</span>
+                        <span class="info-value">
+                            123 Main Street<br>
+                            Accra, Greater Accra<br>
+                            Ghana, 00233
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}

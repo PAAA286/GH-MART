@@ -1,0 +1,58 @@
+/* Fallback CSS animations if GSAP doesn't load */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Hero animations */
+.hero h1 {
+    animation: fadeInUp 1s ease 0.3s forwards;
+}
+
+.hero p {
+    animation: fadeInUp 1s ease 0.6s forwards;
+}
+
+.hero-btn {
+    animation: fadeInUp 1s ease 0.9s forwards;
+}
+
+/* Product card animations */
+.product-card {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Stagger animations for product cards */
+.products-grid .product-card:nth-child(1) { animation-delay: 0.1s; }
+.products-grid .product-card:nth-child(2) { animation-delay: 0.2s; }
+.products-grid .product-card:nth-child(3) { animation-delay: 0.3s; }
+.products-grid .product-card:nth-child(4) { animation-delay: 0.4s; }
+.products-grid .product-card:nth-child(5) { animation-delay: 0.5s; }
+.products-grid .product-card:nth-child(6) { animation-delay: 0.6s; }
+.products-grid .product-card:nth-child(7) { animation-delay: 0.7s; }
+.products-grid .product-card:nth-child(8) { animation-delay: 0.8s; }
+
+/* Button hover effects */
+.btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}

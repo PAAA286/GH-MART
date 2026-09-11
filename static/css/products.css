@@ -1,0 +1,155 @@
+/* Products page styles */
+.products-header {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #f8f9fa;
+}
+
+.products-header h1 {
+    margin-bottom: 0.5rem;
+}
+
+.filters {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 1rem;
+}
+
+.filters h3 {
+    margin-top: 0;
+}
+
+.filters ul {
+    list-style: none;
+    padding: 0;
+}
+
+.filters li {
+    margin-bottom: 0.5rem;
+}
+
+.filters a {
+    color: var(--dark-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.filters a:hover {
+    color: var(--primary-color);
+}
+
+/* Product detail styles */
+.product-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.product-images {
+    position: relative;
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.product-info h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.stock-status {
+    margin-bottom: 1.5rem;
+}
+
+.in-stock {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.out-of-stock {
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
+.product-description {
+    margin-bottom: 2rem;
+}
+
+.add-to-cart-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.add-to-cart-section label {
+    font-weight: bold;
+}
+
+.add-to-cart-section input {
+    padding: 0.5rem;
+    width: 70px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.related-products {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+.related-products h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    gap: 0.5rem;
+}
+
+.pagination a {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--dark-color);
+    transition: all 0.3s;
+}
+
+.pagination a:hover,
+.pagination a.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .product-detail {
+        grid-template-columns: 1fr;
+    }
+    
+    .filters {
+        margin: 1rem 0;
+    }
+}
